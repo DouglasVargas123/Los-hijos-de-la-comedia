@@ -14,21 +14,21 @@ public class MovementController : MonoBehaviour
     private CharacterController player;
     private Vector3 playerInput;
     private Vector3 movePlayer;
-    [Header("CAM")]
-    public Camera mainCam;
+
+    //Cam
     private Vector3 camForward;
     private Vector3 camRight;
     [Header("Anim")]
     public Animator anim;
+    [Header("InputSystem")]
+    [SerializeField] private InputManager inputActions;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         MOVE();
@@ -36,37 +36,45 @@ public class MovementController : MonoBehaviour
 
     private void MOVE()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
-        verticalMove = Input.GetAxis("Vertical");
-
-        playerInput = new Vector3(horizontalMove, 0, verticalMove);
-        playerInput = Vector3.ClampMagnitude(playerInput, 1);
-
+        CaptureInput();
+        NormalizeInput();
         camDirection();
-
-        movePlayer = playerInput.x * camRight + playerInput.z * camForward;
-
-        movePlayer = movePlayer * playerSpeed;
-        anim.SetFloat("VelRun", player.velocity.magnitude);
-
-        player.transform.LookAt(player.transform.position + movePlayer);
-
+        CalculateMovement();
         SetGravity();
         PerformJump();
+        ApplyMovement();
+    }
 
-        player.Move(movePlayer * Time.deltaTime);
+    private void CaptureInput()
+    {
+        horizontalMove = Input.GetAxis("Horizontal");
+        verticalMove = Input.GetAxis("Vertical");
+    }
+
+    private void NormalizeInput()
+    {
+        playerInput = new Vector3(horizontalMove, 0, verticalMove);
+        playerInput = Vector3.ClampMagnitude(playerInput, 1);
     }
 
     public void camDirection()
     {
-        camForward = mainCam.transform.forward;
-        camRight = mainCam.transform.right;
+        camForward = Camera.main.transform.forward;
+        camRight = Camera.main.transform.right;
 
         camForward.y = 0;
         camRight.y = 0;
 
         camForward = camForward.normalized;
         camRight = camRight.normalized;
+    }
+
+    private void CalculateMovement()
+    {
+        movePlayer = playerInput.x * camRight + playerInput.z * camForward;
+        movePlayer = movePlayer * playerSpeed;
+        anim.SetFloat("VelRun", player.velocity.magnitude);
+        player.transform.LookAt(player.transform.position + movePlayer);
     }
 
     public void SetGravity()
@@ -85,11 +93,16 @@ public class MovementController : MonoBehaviour
 
     public void PerformJump()
     {
-        if (player.isGrounded && Input.GetButtonDown("Jump"))
+        if (player.isGrounded && inputActions.isJumping)
         {
             fallVelocity = jumpForce; //Caida
             movePlayer.y = fallVelocity; //Velocidad caida
             anim.SetBool("JumpPerform", player.isGrounded); //Animacion salto
         }
+    }
+
+    private void ApplyMovement()
+    {
+        player.Move(movePlayer * Time.deltaTime);
     }
 }

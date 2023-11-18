@@ -9,6 +9,7 @@ public class InteractController : MonoBehaviour
     private MovementController movementController;
     private float originalSpeed;
     private float originalJumpForce;
+    public InputManager inputManager;
 
     private void Start()
     {
@@ -18,11 +19,12 @@ public class InteractController : MonoBehaviour
         originalJumpForce = movementController.jumpForce;
     }
 
-    private void Update()
+
+    private void FixedUpdate()
     {
-        Debug.DrawRay(raycastPoint.position,raycastPoint.forward * rayDistance,Color.red);
+        Debug.DrawRay(raycastPoint.position, raycastPoint.forward * rayDistance, Color.red);
         RaycastHit hit;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (inputManager.isHolding)
         {
             if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out hit, rayDistance, LayerMask.GetMask("Interactuable")))
             {
@@ -32,14 +34,13 @@ public class InteractController : MonoBehaviour
                 Debug.Log(hit.transform.GetComponent<Pickable>().objectsValue.ObjectName);
             }
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (!inputManager.isHolding)
         {
             if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out hit, rayDistance, LayerMask.GetMask("Interactuable")))
             {
                 hit.transform.GetComponent<Interactable>().Soltar();
                 movementController.playerSpeed = originalSpeed;
                 movementController.jumpForce = originalJumpForce;
-                Debug.Log("Soltar");
             }
         }
     }
