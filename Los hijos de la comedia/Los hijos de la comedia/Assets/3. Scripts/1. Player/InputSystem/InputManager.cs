@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
     InputManagerController inputActions;
     [HideInInspector] public bool isJumping = false;
     [HideInInspector] public bool isHolding = false;
+    [SerializeField] private InteractController interactController;
+    [HideInInspector] public Vector3 dir;
 
     private void Awake()
     {
@@ -26,15 +28,25 @@ public class InputManager : MonoBehaviour
         inputActions.Player.Hold.canceled += HoldInput;
     }
 
+    public Vector3 MoveInput()
+    {
+        return inputActions.Player.Movement.ReadValue<Vector3>();
+    }
+
+    private void Update()
+    {
+        Debug.Log(MoveInput());
+    }
+
     private void HoldInput(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            isHolding = true;
+            interactController.Grab();
         }
         else if (context.canceled)
         {
-            isHolding = false;
+            interactController.Grabnt();
         }
     }
 

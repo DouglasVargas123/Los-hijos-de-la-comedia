@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ObjetoAmarillo
   m_EditorClassIdentifier: 
   objectName: ObjetoAmarillo
-  objectWeightSpeed: 5
-  objectWeightJump: 4
+  objectWeightSpeed: 4
+  objectWeightJump: 5
   positionX: 0
   positionY: 0
   positionZ: 0

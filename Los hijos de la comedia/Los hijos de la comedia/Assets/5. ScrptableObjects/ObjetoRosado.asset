@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ObjetoRosado
   m_EditorClassIdentifier: 
   objectName: ObjetoRosado
-  objectWeightSpeed: 7
+  objectWeightSpeed: 5
   objectWeightJump: 6
   positionX: 0
   positionY: 0

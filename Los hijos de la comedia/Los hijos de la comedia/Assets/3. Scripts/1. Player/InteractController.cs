@@ -23,25 +23,26 @@ public class InteractController : MonoBehaviour
     private void FixedUpdate()
     {
         Debug.DrawRay(raycastPoint.position, raycastPoint.forward * rayDistance, Color.red);
+    }
+
+    public void Grab()
+    {
         RaycastHit hit;
-        if (inputManager.isHolding)
+        if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out hit, rayDistance, LayerMask.GetMask("Interactuable")))
         {
-            if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out hit, rayDistance, LayerMask.GetMask("Interactuable")))
-            {
-                hit.transform.GetComponent<Interactable>().Interact();
-                movementController.playerSpeed = movementController.playerSpeed - hit.transform.GetComponent<Pickable>().objectsValue.ObjectWeightSpeed;
-                movementController.jumpForce = movementController.jumpForce - hit.transform.GetComponent<Pickable>().objectsValue.ObjectWeightJump;
-                Debug.Log(hit.transform.GetComponent<Pickable>().objectsValue.ObjectName);
-            }
+            hit.transform.GetComponent<Interactable>().Interact();
+            movementController.playerSpeed -= hit.transform.GetComponent<Pickable>().objectsValue.ObjectWeightSpeed;
+            movementController.jumpForce -= hit.transform.GetComponent<Pickable>().objectsValue.ObjectWeightJump;
         }
-        if (!inputManager.isHolding)
+    }
+    public void Grabnt()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out hit, rayDistance, LayerMask.GetMask("Interactuable")))
         {
-            if (Physics.Raycast(raycastPoint.position, raycastPoint.forward, out hit, rayDistance, LayerMask.GetMask("Interactuable")))
-            {
-                hit.transform.GetComponent<Interactable>().Soltar();
-                movementController.playerSpeed = originalSpeed;
-                movementController.jumpForce = originalJumpForce;
-            }
+            hit.transform.GetComponent<Interactable>().Soltar();
+            movementController.playerSpeed = originalSpeed;
+            movementController.jumpForce = originalJumpForce;
         }
     }
 }
