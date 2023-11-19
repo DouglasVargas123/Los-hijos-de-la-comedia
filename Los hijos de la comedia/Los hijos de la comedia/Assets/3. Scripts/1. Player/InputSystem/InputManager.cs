@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool isHolding = false;
     [SerializeField] private InteractController interactController;
     [HideInInspector] public Vector3 dir;
+    [SerializeField] private MovementController movementController;
 
     private void Awake()
     {

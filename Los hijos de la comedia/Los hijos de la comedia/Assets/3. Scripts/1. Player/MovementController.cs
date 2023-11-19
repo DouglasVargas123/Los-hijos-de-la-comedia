@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     private Vector3 playerInput;
     private Vector3 movePlayer;
 
-    [SerializeField] private bool isMoving = true; 
+    [HideInInspector] public bool isMoving = true; 
 
     //Cam
     private Vector3 camForward;
@@ -44,12 +44,16 @@ public class MovementController : MonoBehaviour
     {
         if (isMoving)
         {
+            Debug.Log("Resnudadr");
             CaptureInput();
             input.inputActions.Player.Enable();
+            input.inputActions.UI.Disable();
         }
         else
         {
+            Debug.Log("Pausa");
             input.inputActions.Player.Disable();
+            input.inputActions.UI.Enable();
         }
 
         NormalizeInput();
