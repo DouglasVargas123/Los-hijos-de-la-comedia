@@ -11,10 +11,12 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool isHolding = false;
     [SerializeField] private InteractController interactController;
     [HideInInspector] public Vector3 dir;
+    private float currentValue = 0.5f; // Valor inicial
 
     private void Awake()
     {
         inputActions = new InputManagerController();
+        inputActions.Enable();
     }
 
     public void OnEnable()
@@ -30,13 +32,14 @@ public class InputManager : MonoBehaviour
 
     public Vector3 MoveInput()
     {
-        return inputActions.Player.Movement.ReadValue<Vector3>();
+        return inputActions.Player.Movement.ReadValue<Vector2>();
     }
 
     private void Update()
     {
         Debug.Log(MoveInput());
     }
+
 
     private void HoldInput(InputAction.CallbackContext context)
     {
