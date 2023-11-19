@@ -58,4 +58,9 @@ public class MenuManager : MonoBehaviour
     {
         anim.SetTrigger("SwitchBestiarioAOpciones");
     }
+
+    public void SwitchGuardarAOpciones()
+    {
+        anim.SetTrigger("SwitchGuardarAOpciones");
+    }
 }
