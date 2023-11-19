@@ -44,16 +44,11 @@ public class MovementController : MonoBehaviour
     {
         if (isMoving)
         {
-            Debug.Log("Resnudadr");
             CaptureInput();
-            input.inputActions.Player.Enable();
-            input.inputActions.UI.Disable();
         }
         else
         {
-            Debug.Log("Pausa");
-            input.inputActions.Player.Disable();
-            input.inputActions.UI.Enable();
+            NoCaptureInput();
         }
 
         NormalizeInput();
@@ -70,11 +65,11 @@ public class MovementController : MonoBehaviour
 
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
-
-        //Input system que funciona mal
-
-        //horizontalMove = inputActions.MoveInput().x;
-        //verticalMove = inputActions.MoveInput().y;
+    }
+    private void NoCaptureInput()
+    {
+        horizontalMove = 0;
+        verticalMove = 0;
     }
 
     private void NormalizeInput()
