@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
+
 public class MovementController : MonoBehaviour
 {
+
+
     [Header("PlayerMovement")]
     public float playerSpeed;
     private float fallVelocity;
@@ -15,13 +19,15 @@ public class MovementController : MonoBehaviour
     private Vector3 playerInput;
     private Vector3 movePlayer;
 
+    [SerializeField] private bool isMoving = true; 
+
     //Cam
     private Vector3 camForward;
     private Vector3 camRight;
     [Header("Anim")]
     public Animator anim;
     [Header("InputSystem")]
-    [SerializeField] private InputManager inputActions;
+    [SerializeField] private InputManager input;
 
 
     void Start()
@@ -36,7 +42,16 @@ public class MovementController : MonoBehaviour
 
     private void MOVE()
     {
-        CaptureInput();
+        if (isMoving)
+        {
+            CaptureInput();
+            input.inputActions.Player.Enable();
+        }
+        else
+        {
+            input.inputActions.Player.Disable();
+        }
+
         NormalizeInput();
         camDirection();
         CalculateMovement();
@@ -47,8 +62,15 @@ public class MovementController : MonoBehaviour
 
     private void CaptureInput()
     {
+        //INput predeterminado
+
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
+
+        //Input system que funciona mal
+
+        //horizontalMove = inputActions.MoveInput().x;
+        //verticalMove = inputActions.MoveInput().y;
     }
 
     private void NormalizeInput()
@@ -93,7 +115,7 @@ public class MovementController : MonoBehaviour
 
     public void PerformJump()
     {
-        if (player.isGrounded && inputActions.isJumping)
+        if (player.isGrounded && input.isJumping)
         {
             fallVelocity = jumpForce; //Caida
             movePlayer.y = fallVelocity; //Velocidad caida

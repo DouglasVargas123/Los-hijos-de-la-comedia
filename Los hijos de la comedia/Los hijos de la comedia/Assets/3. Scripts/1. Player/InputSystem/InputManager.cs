@@ -6,12 +6,11 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    InputManagerController inputActions;
+    [HideInInspector] public InputManagerController inputActions;
     [HideInInspector] public bool isJumping = false;
     [HideInInspector] public bool isHolding = false;
     [SerializeField] private InteractController interactController;
     [HideInInspector] public Vector3 dir;
-    private float currentValue = 0.5f; // Valor inicial
 
     private void Awake()
     {
@@ -21,7 +20,6 @@ public class InputManager : MonoBehaviour
 
     public void OnEnable()
     {
-        inputActions.Player.Enable();
 
         inputActions.Player.Jump.performed += JumpInput;
         inputActions.Player.Jump.canceled += JumpInput;
@@ -32,14 +30,9 @@ public class InputManager : MonoBehaviour
 
     public Vector3 MoveInput()
     {
+        //Quizas no use
         return inputActions.Player.Movement.ReadValue<Vector2>();
     }
-
-    private void Update()
-    {
-        Debug.Log(MoveInput());
-    }
-
 
     private void HoldInput(InputAction.CallbackContext context)
     {
