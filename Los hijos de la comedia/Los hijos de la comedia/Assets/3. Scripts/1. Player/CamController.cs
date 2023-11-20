@@ -10,7 +10,7 @@ public class CamController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Verifica si el objeto con el que colisionó el jugador tiene una etiqueta específica
-        if (other.gameObject.name == "SalaTerceraPersona" || other.gameObject.name == "Sala (1)" || other.gameObject.name == "Sala (2)" || other.gameObject.name == "Sala (3)" || other.gameObject.name == "Sala (4)")
+        if (other.gameObject.name == "SalaTerceraPersona" || other.gameObject.name == "Sala (1)" || other.gameObject.name == "Sala (2)" || other.gameObject.name == "Sala (3)" || other.gameObject.name == "Sala (4)" || other.gameObject.name == "Sala (5)")
         {
             // Realiza alguna acción específica para cada objeto
             if (other.gameObject.name == "SalaTerceraPersona")
@@ -33,6 +33,11 @@ public class CamController : MonoBehaviour
             {
                 virtualCam.Follow = Views[4];
             }
+            else if (other.gameObject.name == "Sala (5)")
+            {
+                virtualCam.Follow = Views[5];
+            }
+
         }
     }
 }
