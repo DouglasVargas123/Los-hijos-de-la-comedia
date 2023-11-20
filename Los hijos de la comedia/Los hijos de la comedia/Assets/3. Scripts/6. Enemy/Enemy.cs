@@ -3,49 +3,78 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    /*
-     * He intentado hacer el código lo más simple posible para que sea entendible para aquellos que no sepan de programación o estén iniciándose.
-     */
-
     private NavMeshAgent navMeshAgent;
     public GameObject player;
-    public GameObject[] destinations; // Usa un array de destinos para poder asignar tantos destinos como desees (excepto el jugador)
-    public float distanceToFollowPlayer = 5f; // Distancia a la que empezará a seguir al jugador (dependerá de la escala de vuestro escenario, modificable desde el Editor de Unity)
-    Vector3 currentTarget; // Almacena el objetivo actual al que se dirige (incluirá al jugador)
-    private int currentDestination = 0; // Controla el destino actual al que se dirige (del array de destinos)
+    public GameObject[] destinations;
+    public GameObject destinoFinal;
+    public float distanceToFollowPlayer = 5f;
+    public float distanceToPlayerArrival = 1.0f;
+    private Vector3 currentTarget;
+    private int currentDestination = 0;
+
+    [Header("Controlador Jugador")]
+    public MovementController movementController;
+    public Transform raycastPoint;
+    public float rayDistance;
+
+    private bool hasGrabbedPlayer = false;
 
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        currentTarget = destinations[currentDestination].transform.position; // Asigna el primer destino para empezar a moverse
+        currentTarget = destinations[currentDestination].transform.position;
     }
 
     void Update()
     {
-        if (Vector3.Distance(destinations[currentDestination].transform.position, transform.position) < 0.1f) // Controla cuando alcanza el destino actual (no es recomendable poner "igual a 0")
+        if (!hasGrabbedPlayer)
         {
-            navMeshAgent.speed = 3;
-            if (currentDestination == destinations.Length - 1) // Si el destino actual es el último del array ...
+            // Si el jugador está dentro de la distancia especificada para empezar a seguirlo ...
+            if (Vector3.Distance(player.transform.position, transform.position) < distanceToFollowPlayer)
             {
-                currentDestination = 0; // ... volverá a empezar de nuevo
-            }
-            else // si no ...
-            {
-                currentDestination++; // ... continuará con el siguiente destino
-            }
-        }
+                navMeshAgent.speed = 10;
+                currentTarget = player.transform.position; // Asigna como objetivo actual al jugador
 
-        if (Vector3.Distance(player.transform.position, transform.position) < distanceToFollowPlayer) // Si el jugador está dentro de la distancia especificada para empezar a seguirlo ...
-        {
-            navMeshAgent.speed = 10;
-            currentTarget = player.transform.position; // ... asigna como objetivo actual al jugador
+                // Verifica si ha llegado al jugador
+                if (Vector3.Distance(player.transform.position, transform.position) < distanceToPlayerArrival)
+                {
+                    // Llama a la función que deseas activar cuando llega al jugador
+                    LlegoAlJugador();
+                }
+            }
+            else // Si el jugador no está cerca, sigue la rutina de destinos
+            {
+                if (Vector3.Distance(destinations[currentDestination].transform.position, transform.position) < 0.1f)
+                {
+                    navMeshAgent.speed = 3;
+                    // Controla cuando alcanza el destino actual
+                    if (currentDestination == destinations.Length - 1)
+                    {
+                        currentDestination = 0; // Vuelve a empezar si es el último destino
+                    }
+                    else
+                    {
+                        currentDestination++; // Continúa con el siguiente destino
+                    }
+                }
+                // Asigna como objetivo actual el destino que le corresponde en la rutina
+                currentTarget = destinations[currentDestination].transform.position;
+            }
         }
-        else // si no ...
+        else
         {
-            navMeshAgent.speed = 3;
-            currentTarget = destinations[currentDestination].transform.position; // ... continúa con el destino que le corresponde (también controla que el jugador consiga escapar si corre más que el enemigo)
+            // Si ya ha agarrado al jugador, dirígete al destino final
+            currentTarget = destinoFinal.transform.position;
         }
 
         navMeshAgent.destination = currentTarget; // Asigna el objetivo al que debe ir, ya sea destino o jugador
+    }
+
+    // Función que se llama cuando el enemigo llega al jugador
+    void LlegoAlJugador()
+    {
+        // Aquí puedes poner el código que deseas ejecutar cuando el enemigo llega al jugador
+        Debug.Log("El enemigo ha llegado al jugador");
+        hasGrabbedPlayer = true;
     }
 }

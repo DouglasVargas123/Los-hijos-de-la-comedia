@@ -13,13 +13,15 @@ public class MovementController : MonoBehaviour
     private float fallVelocity;
     public float gravity;
     public float jumpForce;
+
     private float horizontalMove;
     private float verticalMove;
+
     private CharacterController player;
     private Vector3 playerInput;
     private Vector3 movePlayer;
 
-    [HideInInspector] public bool isMoving = true; 
+    [HideInInspector] public bool isMoving = true;
 
     //Cam
     private Vector3 camForward;
@@ -29,6 +31,8 @@ public class MovementController : MonoBehaviour
     [Header("InputSystem")]
     [SerializeField] private InputManager input;
 
+    // Nueva variable para controlar si la gravedad está habilitada o no
+    [HideInInspector] public bool isGravityEnabled = true;
 
     void Start()
     {
@@ -62,14 +66,16 @@ public class MovementController : MonoBehaviour
     private void CaptureInput()
     {
         //INput predeterminado
-
         horizontalMove = Input.GetAxis("Horizontal");
         verticalMove = Input.GetAxis("Vertical");
+        isGravityEnabled = true;
     }
+
     private void NoCaptureInput()
     {
         horizontalMove = 0;
         verticalMove = 0;
+        isGravityEnabled = false;
     }
 
     private void NormalizeInput()
@@ -100,15 +106,23 @@ public class MovementController : MonoBehaviour
 
     public void SetGravity()
     {
-        if (player.isGrounded)
+        if (isGravityEnabled) // Verifica si la gravedad está habilitada
         {
-            fallVelocity = -gravity * Time.deltaTime;
-            movePlayer.y = fallVelocity;
+            if (player.isGrounded)
+            {
+                fallVelocity = -gravity * Time.deltaTime;
+                movePlayer.y = fallVelocity;
+            }
+            else
+            {
+                fallVelocity -= gravity * Time.deltaTime;
+                movePlayer.y = fallVelocity;
+            }
         }
         else
         {
-            fallVelocity -= gravity * Time.deltaTime;
-            movePlayer.y = fallVelocity;
+            // Si la gravedad está deshabilitada, establece la velocidad vertical en 0
+            movePlayer.y = 0f;
         }
     }
 
@@ -116,14 +130,20 @@ public class MovementController : MonoBehaviour
     {
         if (player.isGrounded && input.isJumping)
         {
-            fallVelocity = jumpForce; //Caida
-            movePlayer.y = fallVelocity; //Velocidad caida
-            anim.SetBool("JumpPerform", player.isGrounded); //Animacion salto
+            fallVelocity = jumpForce;
+            movePlayer.y = fallVelocity;
+            anim.SetBool("JumpPerform", player.isGrounded);
         }
     }
 
     private void ApplyMovement()
     {
         player.Move(movePlayer * Time.deltaTime);
+    }
+
+    // Método para habilitar o deshabilitar la gravedad desde fuera del script
+    public void ToggleGravity(bool enableGravity)
+    {
+        isGravityEnabled = enableGravity;
     }
 }
