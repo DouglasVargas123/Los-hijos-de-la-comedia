@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
         currentTarget = destinations[currentDestination].transform.position;
     }
 
+
+
     void Update()
     {
         if (!hasGrabbedPlayer)
@@ -46,9 +48,11 @@ public class Enemy : MonoBehaviour
             }
             else // Si el jugador no está cerca, sigue la rutina de destinos
             {
-                if (Vector3.Distance(destinations[currentDestination].transform.position, transform.position) < 0.1f)
+                // Verifica si ha llegado al destino actual (usando remainingDistance)
+                if (navMeshAgent.remainingDistance < 0.1f)
                 {
                     navMeshAgent.speed = 3;
+
                     // Controla cuando alcanza el destino actual
                     if (currentDestination == destinations.Length - 1)
                     {
@@ -58,9 +62,10 @@ public class Enemy : MonoBehaviour
                     {
                         currentDestination++; // Continúa con el siguiente destino
                     }
+
+                    // Asigna como objetivo actual el destino que le corresponde en la rutina
+                    currentTarget = destinations[currentDestination].transform.position;
                 }
-                // Asigna como objetivo actual el destino que le corresponde en la rutina
-                currentTarget = destinations[currentDestination].transform.position;
             }
         }
         else
@@ -75,9 +80,7 @@ public class Enemy : MonoBehaviour
                 RestorePlayer();
                 RestartRoutine();
             }
-
         }
-
         navMeshAgent.destination = currentTarget; // Asigna el objetivo al que debe ir, ya sea destino o jugador
     }
 

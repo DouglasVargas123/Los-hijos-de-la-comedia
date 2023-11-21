@@ -2121,7 +2121,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.11191493, y: 0.70284003, z: -0.11346049, w: 0.6932659}
+  m_LocalRotation: {x: 0.11191494, y: 0.70284003, z: -0.113460496, w: 0.6932659}
   m_LocalPosition: {x: -10.361087, y: 3.4350433, z: 0.14211369}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3584,7 +3584,7 @@ GameObject:
   - component: {fileID: 585769166}
   - component: {fileID: 585769165}
   m_Layer: 5
-  m_Name: Volver
+  m_Name: VolverBestiario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3635,7 +3635,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7176471, g: 0.23137255, b: 0.7372549, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5550,6 +5550,10 @@ MonoBehaviour:
   botones:
   - {fileID: 83603282}
   - {fileID: 1447356933}
+  - {fileID: 585769163}
+  - {fileID: 1443991276}
+  - {fileID: 1688390191}
+  - {fileID: 1113323186}
 --- !u!1 &894793703
 GameObject:
   m_ObjectHideFlags: 0
@@ -6856,7 +6860,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7176471, g: 0.23137255, b: 0.7372549, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8186,7 +8190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285321681}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -6.61, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8301,6 +8305,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nuevaPosicion: {x: 0, y: 4.25, z: -100}
+  nuevaObjeto1: {x: 0, y: 4.25, z: -100}
+  nuevaObjeto2: {x: 0, y: 4.25, z: -100}
   anim: {fileID: 880029349}
 --- !u!65 &1306351883
 BoxCollider:
@@ -8313,8 +8319,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 128.9515, y: 1, z: 143.95596}
-  m_Center: {x: -29.589083, y: 0, z: 44.619194}
+  m_Size: {x: 153.62326, y: 1, z: 162.00845}
+  m_Center: {x: -17.253204, y: 0, z: 35.59294}
 --- !u!1 &1328409764
 GameObject:
   m_ObjectHideFlags: 0
@@ -9609,7 +9615,7 @@ GameObject:
   - component: {fileID: 1443991279}
   - component: {fileID: 1443991278}
   m_Layer: 5
-  m_Name: Volver
+  m_Name: VolverControles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9660,7 +9666,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7176471, g: 0.23137255, b: 0.7372549, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -10069,7 +10075,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472721523}
-  m_LocalRotation: {x: 0.11191493, y: 0.70284003, z: -0.11346049, w: 0.6932659}
+  m_LocalRotation: {x: 0.11191494, y: 0.70284003, z: -0.113460496, w: 0.6932659}
   m_LocalPosition: {x: -10.361087, y: 3.4350433, z: 0.14211369}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11906,7 +11912,7 @@ GameObject:
   - component: {fileID: 1592413999}
   m_Layer: 6
   m_Name: Objeto2
-  m_TagString: Untagged
+  m_TagString: Objeto
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12282,7 +12288,7 @@ GameObject:
   - component: {fileID: 1688390194}
   - component: {fileID: 1688390193}
   m_Layer: 5
-  m_Name: Volver
+  m_Name: VolverSonido (Despues lo cambio)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12333,7 +12339,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7176471, g: 0.23137255, b: 0.7372549, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -13099,7 +13105,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &1814248250
 BoxCollider:
@@ -13722,7 +13728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1261956100}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1921482515
@@ -13845,7 +13851,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.7176471, g: 0.23137255, b: 0.7372549, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -14232,7 +14238,7 @@ GameObject:
   - component: {fileID: 2010601046}
   m_Layer: 6
   m_Name: Objeto1
-  m_TagString: Untagged
+  m_TagString: Objeto
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14351,7 +14357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022394902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

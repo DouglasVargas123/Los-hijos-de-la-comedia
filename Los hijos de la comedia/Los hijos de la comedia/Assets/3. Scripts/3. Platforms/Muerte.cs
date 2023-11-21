@@ -4,6 +4,8 @@ using System.Collections;
 public class Muerte : MonoBehaviour
 {
     public Vector3 nuevaPosicion = new Vector3(0f, 4.25f, -100f);
+    public Vector3 nuevaObjeto1 = new Vector3(0f, 4.25f, -100f);
+    public Vector3 nuevaObjeto2 = new Vector3(0f, 4.25f, -100f);
     public Animator anim;
 
 
@@ -42,6 +44,30 @@ public class Muerte : MonoBehaviour
         // Vuelve a activar el CharacterController
         characterController.enabled = true;
         anim.SetTrigger("Vivo");
+
+        // Haz algo adicional si es necesario
+        Debug.Log("El jugador ha sido movido a la posición: " + nuevaPosicion);
+    }
+
+    IEnumerator MoverObjeto1Coroutine(BoxCollider bx)
+    {
+
+        // Desactiva el CharacterController temporalmente
+        bx.enabled = false;
+
+        // Mueve al jugador a la nueva posición durante 2 segundos
+        float elapsedTime = 0f;
+        float moveDuration = 2f;
+
+        while (elapsedTime < moveDuration)
+        {
+            // Interpolación lineal para suavizar el movimiento
+            bx.transform.position = Vector3.Lerp(
+                bx.transform.position, nuevaPosicion, elapsedTime / moveDuration);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
 
         // Haz algo adicional si es necesario
         Debug.Log("El jugador ha sido movido a la posición: " + nuevaPosicion);
