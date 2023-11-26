@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Muerte : MonoBehaviour
 {
-    public Vector3 nuevaPosicion = new Vector3(0f, 4.25f, -100f);
-    public Vector3 nuevaObjeto1 = new Vector3(0f, 4.25f, -100f);
-    public Vector3 nuevaObjeto2 = new Vector3(0f, 4.25f, -100f);
+    public Vector3 nuevaPosicion;
+    public Transform nuevaObjeto1;
+    public Transform nuevaObjeto2;
     public Animator anim;
 
 
@@ -15,6 +15,10 @@ public class Muerte : MonoBehaviour
         {
             // Inicia la corutina cuando se detecta al jugador
             StartCoroutine(MoverJugadorCoroutine(other.GetComponent<CharacterController>()));
+        }
+        if (other.CompareTag("Objeto"))
+        {
+            StartCoroutine(MoverObjeto1Coroutine(other.GetComponent<Transform>()));
         }
     }
 
@@ -49,27 +53,39 @@ public class Muerte : MonoBehaviour
         Debug.Log("El jugador ha sido movido a la posición: " + nuevaPosicion);
     }
 
-    IEnumerator MoverObjeto1Coroutine(BoxCollider bx)
+    IEnumerator MoverObjeto1Coroutine(Transform pos)
     {
 
-        // Desactiva el CharacterController temporalmente
-        bx.enabled = false;
 
         // Mueve al jugador a la nueva posición durante 2 segundos
         float elapsedTime = 0f;
-        float moveDuration = 2f;
+        float moveDuration = 0.5f;
 
-        while (elapsedTime < moveDuration)
+        if(pos.transform.name == "Objeto1")
         {
-            // Interpolación lineal para suavizar el movimiento
-            bx.transform.position = Vector3.Lerp(
-                bx.transform.position, nuevaPosicion, elapsedTime / moveDuration);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            while (elapsedTime < moveDuration)
+            {
+                // Interpolación lineal para suavizar el movimiento
+                pos.transform.position = Vector3.Lerp(pos.transform.position, nuevaObjeto1.position, elapsedTime / moveDuration);
+                pos.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+        else if(pos.transform.name == "Objeto2")
+        {
+            while (elapsedTime < moveDuration)
+            {
+                // Interpolación lineal para suavizar el movimiento
+                pos.transform.position = Vector3.Lerp(pos.transform.position, nuevaObjeto2.position, elapsedTime / moveDuration);
+                pos.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
         }
 
+
         // Haz algo adicional si es necesario
-        Debug.Log("El jugador ha sido movido a la posición: " + nuevaPosicion);
+        Debug.Log("El Objeto1 ha sido movido a la posición: " + pos.transform.position);
     }
 }

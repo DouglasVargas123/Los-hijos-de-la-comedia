@@ -7,6 +7,7 @@ public class PlatformController : MonoBehaviour
     private Rigidbody rb;
     public Transform[] platformPositions;
     public float platformSpeed;
+    public CharacterController characterController;
 
     private int actualPosition = 0;
     private int nextPosition = 1;
