@@ -18,7 +18,7 @@ public class Muerte : MonoBehaviour
         }
         if (other.CompareTag("Objeto"))
         {
-            StartCoroutine(MoverObjeto1Coroutine(other.GetComponent<Transform>()));
+            StartCoroutine(MoverObjetoCoroutine(other.GetComponent<Transform>()));
         }
     }
 
@@ -53,7 +53,7 @@ public class Muerte : MonoBehaviour
         Debug.Log("El jugador ha sido movido a la posición: " + nuevaPosicion);
     }
 
-    IEnumerator MoverObjeto1Coroutine(Transform pos)
+    IEnumerator MoverObjetoCoroutine(Transform pos)
     {
 
 

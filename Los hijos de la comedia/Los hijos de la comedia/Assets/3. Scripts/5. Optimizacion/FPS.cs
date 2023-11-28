@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FPS : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         Application.targetFrameRate = 60; // Limita los FPS a 60
     }

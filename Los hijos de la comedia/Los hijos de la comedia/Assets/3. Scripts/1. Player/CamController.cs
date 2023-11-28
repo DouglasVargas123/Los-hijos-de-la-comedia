@@ -12,7 +12,7 @@ public class CamController : MonoBehaviour
     {
         // Verifica si el objeto con el que colisionó el jugador tiene una etiqueta específica
         if (other.gameObject.name == "SalaTerceraPersona" || other.gameObject.name == "Sala (1)" || other.gameObject.name == "Sala (2)" || other.gameObject.name == "Sala (3)" || 
-            other.gameObject.name == "Sala (4)" || other.gameObject.name == "Sala (5)" || other.gameObject.name == "Sala (6)" || other.gameObject.name == "Sala (7)")
+            other.gameObject.name == "Sala (4)" || other.gameObject.name == "Sala (5)" || other.gameObject.name == "Sala (6)" || other.gameObject.name == "Sala (7)" || other.gameObject.name == "Sala (8)" || other.gameObject.name == "Sala (9)")
         {
             // Realiza alguna acción específica para cada objeto
             if (other.gameObject.name == "SalaTerceraPersona")
@@ -53,6 +53,16 @@ public class CamController : MonoBehaviour
             else if (other.gameObject.name == "Sala (7)")
             {
                 virtualCam.Follow = Views[7];
+                virtualCam.LookAt = lookAt[0];
+            }
+            else if (other.gameObject.name == "Sala (8)")
+            {
+                virtualCam.Follow = Views[8];
+                virtualCam.LookAt = lookAt[0];
+            }
+            else if (other.gameObject.name == "Sala (9)")
+            {
+                virtualCam.Follow = Views[9];
                 virtualCam.LookAt = lookAt[0];
             }
 

@@ -5,7 +5,6 @@ using UnityEngine;
 public class InteractController : MonoBehaviour
 {
     private Transform raycastPoint;
-    private Transform raycastGround;
     public float rayDistanceHand;
     public float rayDistanceGround;
     private MovementController movementController;
@@ -13,13 +12,11 @@ public class InteractController : MonoBehaviour
     private float originalJumpForce;
     public InputManager inputManager;
 
-    private Vector3 rayDirectionGround = Vector3.down;
     private Vector3 rayDirectionFront = Vector3.forward;
 
     private void Start()
     {
         raycastPoint = transform.Find("Raycast");
-        raycastGround = transform.Find("RaycastGround");
         movementController = GetComponent<MovementController>();
         originalSpeed = movementController.playerSpeed;
         originalJumpForce = movementController.jumpForce;
@@ -28,8 +25,6 @@ public class InteractController : MonoBehaviour
     private void Update()
     {
         Debug.DrawRay(raycastPoint.position, transform.TransformDirection(rayDirectionFront) * rayDistanceHand, Color.red);
-        Debug.DrawRay(raycastGround.position, transform.TransformDirection(rayDirectionGround) * rayDistanceGround, Color.red);
-        Platform();
     }
 
     public void Grab()
@@ -51,35 +46,6 @@ public class InteractController : MonoBehaviour
             hit.transform.GetComponent<Interactable>().Soltar();
             movementController.playerSpeed = originalSpeed;
             movementController.jumpForce = originalJumpForce;
-        }
-    }
-
-    public void Platform()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(raycastPoint.position, transform.TransformDirection(rayDirectionGround), out hit, rayDistanceGround, LayerMask.GetMask("Platform")))
-        {
-            CharacterController characterController = hit.transform.GetComponent<CharacterController>();
-
-            if (characterController != null)
-            {
-                CharacterController myCharacterController = GetComponent<CharacterController>();
-                if (myCharacterController != null)
-                {
-                    myCharacterController.enabled = false;
-                    myCharacterController.transform.SetParent(hit.transform);
-                    myCharacterController.enabled = true;
-                    myCharacterController.transform.localPosition = Vector3.zero;
-                }
-                else
-                {
-                    Debug.LogWarning("El objeto actual no tiene un CharacterController.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("El objeto golpeado no tiene un CharacterController.");
-            }
         }
     }
 }
