@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Los hijos de la comedia/Los hijos de la comedia/Assets/10. EasyColliderEditor.meta
+guid: 4d2d1fa51ef42de438cd84b17bb0444b
+========
 guid: 1e2d50338e7ac3b48b9172c795a348ef
+>>>>>>>> parent of 0448576 (commit 2.0):Los hijos de la comedia/Los hijos de la comedia/Assets/Scripts.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

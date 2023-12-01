@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
             // Si el jugador está dentro de la distancia especificada para empezar a seguirlo ...
             if (Vector3.Distance(player.transform.position, transform.position) < distanceToFollowPlayer)
             {
-                navMeshAgent.speed = 10;
+                navMeshAgent.speed = 20;
                 currentTarget = player.transform.position; // Asigna como objetivo actual al jugador
 
                 // Verifica si ha llegado al jugador
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
                 // Verifica si ha llegado al destino actual (usando remainingDistance)
                 if (navMeshAgent.remainingDistance < 0.1f)
                 {
-                    navMeshAgent.speed = 3;
+                    navMeshAgent.speed = 15;
 
                     // Controla cuando alcanza el destino actual
                     if (currentDestination == destinations.Length - 1)
