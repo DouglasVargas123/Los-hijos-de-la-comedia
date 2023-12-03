@@ -12,11 +12,26 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public Vector3 dir;
     [SerializeField] private MovementController movementController;
     [SerializeField] private MenuManager menuManager;
+    [SerializeField] private PlatformController[] platformController;
+    [SerializeField] private Enemy[] enemy;
+
+    private int VelocidadOriginalEnemigoDeSeguirAlJugador;
+    private int VelocidadOriginalEnemigoDeSeguirPuntos;
+
+    private float inicio =5000.00f;
+    private float final = 300.00f; 
 
     private void Awake()
     {
         inputActions = new InputManagerController();
         inputActions.Player.Enable();
+
+    }
+
+    private void Start()
+    {
+        VelocidadOriginalEnemigoDeSeguirAlJugador = enemy[0].velocidadSeguirJugador;
+        VelocidadOriginalEnemigoDeSeguirPuntos = enemy[0].VelocidadSeguirPuntos;
     }
 
     public void OnEnable()
@@ -37,6 +52,8 @@ public class InputManager : MonoBehaviour
         if (context.performed)
         {
             StartCoroutine(SwitchGameplay());
+            StartCoroutine(AudioManager.instance.LowPassSmoothTransition(final,inicio));
+
         }
     }
 
@@ -45,6 +62,7 @@ public class InputManager : MonoBehaviour
         if (context.performed)
         {
             StartCoroutine(SwitchUI());
+            StartCoroutine(AudioManager.instance.LowPassSmoothTransition(inicio,final));
         }
     }
 
@@ -84,6 +102,7 @@ public class InputManager : MonoBehaviour
         inputActions.Player.Disable();
         movementController.isMoving = false;
         menuManager.SwitchMenu();
+        ValocidadEnCero();
         yield return new WaitForSeconds(0.5f);
         inputActions.UI.Enable();
 
@@ -96,6 +115,7 @@ public class InputManager : MonoBehaviour
         menuManager.SwitchGameplay();
         yield return new WaitForSeconds(0.5f);
         movementController.isMoving = true;
+        VelocidadNormal();
         inputActions.Player.Enable();
     }
 
@@ -103,4 +123,30 @@ public class InputManager : MonoBehaviour
     {
         StartCoroutine(SwitchGameplay());
     }
+
+    public void ValocidadEnCero()
+    {
+        platformController[0].platformSpeed = 0;
+        platformController[1].platformSpeed = 0;
+        platformController[2].platformSpeed = 0;
+        platformController[3].platformSpeed = 0;
+        platformController[4].platformSpeed = 0;
+
+        enemy[0].velocidadSeguirJugador = 0;
+        enemy[0].VelocidadSeguirPuntos = 0;
+    }
+
+    public void VelocidadNormal()
+    {
+        platformController[0].platformSpeed = 5;
+        platformController[1].platformSpeed = 5;
+        platformController[2].platformSpeed = 5;
+        platformController[3].platformSpeed = 7;
+        platformController[4].platformSpeed = 7;
+
+        enemy[0].velocidadSeguirJugador = VelocidadOriginalEnemigoDeSeguirAlJugador;
+        enemy[0].VelocidadSeguirPuntos = VelocidadOriginalEnemigoDeSeguirPuntos;
+    }
+
+
 }

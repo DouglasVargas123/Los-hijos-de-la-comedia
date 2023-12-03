@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        DesactivarMouse();
     }
 
 
@@ -25,6 +26,8 @@ public class MenuManager : MonoBehaviour
     public void SwitchMenu()
     {
         anim.SetTrigger("SwitchMenu"); //1
+        ActivarMouse();
+
     }
 
     public void SwitchMenuFirstSelected()
@@ -37,12 +40,14 @@ public class MenuManager : MonoBehaviour
     public void SwitchGameplay()
     {
         anim.SetTrigger("SwitchGameplay");//1 (solo 1)
+        DesactivarMouse();
     }
 
     //UI Opciones
     public void SwitchOptions()
     {
         anim.SetTrigger("SwitchOpciones"); //1
+        ActivarMouse();
     }
 
     public void SwitchOptionsSelected()
@@ -55,6 +60,7 @@ public class MenuManager : MonoBehaviour
     public void SwitchBestiario()
     {
         anim.SetTrigger("SwitchBestiario"); //1
+        ActivarMouse();
     }
 
     public void SwitchBestiarioSelected()
@@ -67,6 +73,7 @@ public class MenuManager : MonoBehaviour
     public void SwitchGuardarYSalir()
     {
         anim.SetTrigger("SwitchSalir"); //1
+        ActivarMouse();
     }
 
     public void SwitchGuardarYSalirSelected()
@@ -79,6 +86,7 @@ public class MenuManager : MonoBehaviour
     public void SwitchOpcionesAmenu()
     {
         anim.SetTrigger("SwitchOpcionesAmenu"); //1
+        ActivarMouse();
     }
 
     public void SwitchOpcionesAmenuSelected()
@@ -91,6 +99,7 @@ public class MenuManager : MonoBehaviour
     public void SwitchOpcionesAControles()
     {
         anim.SetTrigger("OpcionesAControles"); //1
+        ActivarMouse();
     }
 
     public void SwitchOpcionesAControlesSelected()
@@ -103,6 +112,7 @@ public class MenuManager : MonoBehaviour
     public void SwitchControlesAOpciones()
     {
         anim.SetTrigger("SwitchControlesAOpciones"); //1
+        ActivarMouse();
     }
 
     public void SwitchControlesAOpcionesSelected()
@@ -114,6 +124,7 @@ public class MenuManager : MonoBehaviour
     public void SwitchOpcionesASonido()
     {
         anim.SetTrigger("SwitchOpcionesASonido");
+        ActivarMouse();
     }
 
     public void SwitchOpcionesASonidoSelected()
@@ -125,6 +136,7 @@ public class MenuManager : MonoBehaviour
     public void SwitchBestiarioAOpciones()
     {
         anim.SetTrigger("SwitchBestiarioAOpciones");
+        ActivarMouse();
     }
 
     public void SwitchBestiarioAOpcionesSelected()
@@ -136,6 +148,7 @@ public class MenuManager : MonoBehaviour
     public void SwitchGuardarAOpciones()
     {
         anim.SetTrigger("SwitchGuardarAOpciones");
+        ActivarMouse();
     }
 
     public void SwitchGuardarAOpcionesSelected()
@@ -155,5 +168,17 @@ public class MenuManager : MonoBehaviour
 
             // Puedes realizar acciones adicionales después de seleccionar el objeto si es necesario
         }
+    }
+
+    private void ActivarMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    private void DesactivarMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
     }
 }

@@ -13,7 +13,6 @@ public class DDialogo : MonoBehaviour
         if (asjdhkalskdja.CompareTag("Player"))
         {
             // Hacer algo cuando el jugador entra en el área
-            Debug.Log("LLeog");
             animpredrodevaldivia.SetBool("Hablar", true);
             anim.SetTrigger("Aparece");
         }
@@ -27,7 +26,6 @@ public class DDialogo : MonoBehaviour
             // Hacer algo cuando el jugador entra en el área
             anim.SetTrigger("Desaparece");
             animpredrodevaldivia.SetBool("Hablar", false);
-            Debug.Log("Salio");
         }
     }
 }

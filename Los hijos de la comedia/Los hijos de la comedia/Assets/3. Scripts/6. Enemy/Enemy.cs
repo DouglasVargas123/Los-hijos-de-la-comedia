@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    private NavMeshAgent navMeshAgent;
+    [HideInInspector] public NavMeshAgent navMeshAgent;
     public GameObject player;
     public GameObject[] destinations;
     public GameObject destinoFinal;
@@ -21,13 +21,14 @@ public class Enemy : MonoBehaviour
 
     private bool hasGrabbedPlayer = false;
 
+    [HideInInspector] public int velocidadSeguirJugador = 20;
+    [HideInInspector] public int VelocidadSeguirPuntos = 15;
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         currentTarget = destinations[currentDestination].transform.position;
     }
-
-
 
     void Update()
     {
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
             // Si el jugador está dentro de la distancia especificada para empezar a seguirlo ...
             if (Vector3.Distance(player.transform.position, transform.position) < distanceToFollowPlayer)
             {
-                navMeshAgent.speed = 20;
+                navMeshAgent.speed = velocidadSeguirJugador;
                 currentTarget = player.transform.position; // Asigna como objetivo actual al jugador
 
                 // Verifica si ha llegado al jugador
@@ -51,7 +52,7 @@ public class Enemy : MonoBehaviour
                 // Verifica si ha llegado al destino actual (usando remainingDistance)
                 if (navMeshAgent.remainingDistance < 0.1f)
                 {
-                    navMeshAgent.speed = 15;
+                    navMeshAgent.speed = VelocidadSeguirPuntos;
 
                     // Controla cuando alcanza el destino actual
                     if (currentDestination == destinations.Length - 1)
