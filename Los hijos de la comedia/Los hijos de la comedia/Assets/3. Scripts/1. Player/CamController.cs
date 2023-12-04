@@ -14,7 +14,8 @@ public class CamController : MonoBehaviour
         // Verifica si el objeto con el que colisionó el jugador tiene una etiqueta específica
         if (other.gameObject.name == "SalaTerceraPersona" || other.gameObject.name == "Sala (1)" || other.gameObject.name == "Sala (2)" || other.gameObject.name == "Sala (3)" || 
             other.gameObject.name == "Sala (4)" || other.gameObject.name == "Sala (5)" || other.gameObject.name == "Sala (6)" || other.gameObject.name == "Sala (7)" || other.gameObject.name == "Sala (8)" || other.gameObject.name == "Sala (9)"
-            || other.gameObject.name == "Sala (10)" || other.gameObject.name == "Sala (11)" || other.gameObject.name == "Sala (12)")
+            || other.gameObject.name == "Sala (10)" || other.gameObject.name == "Sala (11)" || other.gameObject.name == "Sala (12)" || other.gameObject.name == "Sala (13)" || other.gameObject.name == "Sala (14)" || other.gameObject.name == "Sala (15)" || 
+            other.gameObject.name == "Sala (16)" || other.gameObject.name == "Sala (17)" || other.gameObject.name == "Sala (18)")
         {
             // Realiza alguna acción específica para cada objeto
             if (other.gameObject.name == "SalaTerceraPersona")
@@ -82,7 +83,36 @@ public class CamController : MonoBehaviour
                 virtualCam.Follow = Views[12];
                 virtualCam.LookAt = lookAt[0];
             }
-
+            else if (other.gameObject.name == "Sala (13)")
+            {
+                virtualCam.Follow = Views[13];
+                virtualCam.LookAt = lookAt[0];
+            }
+            else if (other.gameObject.name == "Sala (14)")
+            {
+                virtualCam.Follow = Views[14];
+                virtualCam.LookAt = lookAt[0];
+            }
+            else if (other.gameObject.name == "Sala (15)")
+            {
+                virtualCam.Follow = Views[15];
+                virtualCam.LookAt = lookAt[0];
+            }
+            else if (other.gameObject.name == "Sala (16)")
+            {
+                virtualCam.Follow = Views[16];
+                virtualCam.LookAt = lookAt[0];
+            }
+            else if (other.gameObject.name == "Sala (17)")
+            {
+                virtualCam.Follow = Views[17];
+                virtualCam.LookAt = lookAt[0];
+            }
+            else if (other.gameObject.name == "Sala (18)")
+            {
+                virtualCam.Follow = Views[18];
+                virtualCam.LookAt = lookAt[0];
+            }
         }
     }
 }

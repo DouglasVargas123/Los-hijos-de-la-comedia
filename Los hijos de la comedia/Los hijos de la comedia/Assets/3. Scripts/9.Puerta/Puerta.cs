@@ -17,7 +17,6 @@ public class Puerta : MonoBehaviour
                 Debug.Log("Objeto 2 adentro");
             }
             Debug.Log("objeto llego");
-
         }
     }
 
