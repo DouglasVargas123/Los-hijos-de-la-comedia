@@ -14,7 +14,7 @@ public class CamController : MonoBehaviour
         // Verifica si el objeto con el que colisionó el jugador tiene una etiqueta específica
         if (other.gameObject.name == "SalaTerceraPersona" || other.gameObject.name == "Sala (1)" || other.gameObject.name == "Sala (2)" || other.gameObject.name == "Sala (3)" || 
             other.gameObject.name == "Sala (4)" || other.gameObject.name == "Sala (5)" || other.gameObject.name == "Sala (6)" || other.gameObject.name == "Sala (7)" || other.gameObject.name == "Sala (8)" || other.gameObject.name == "Sala (9)"
-            || other.gameObject.name == "Sala (10)" || other.gameObject.name == "Sala (11)")
+            || other.gameObject.name == "Sala (10)" || other.gameObject.name == "Sala (11)" || other.gameObject.name == "Sala (12)")
         {
             // Realiza alguna acción específica para cada objeto
             if (other.gameObject.name == "SalaTerceraPersona")
@@ -76,6 +76,11 @@ public class CamController : MonoBehaviour
             else if (other.gameObject.name == "Sala (11)")
             {
                 enemy.distanceToFollowPlayer = 25;
+            }
+            else if (other.gameObject.name == "Sala (12)")
+            {
+                virtualCam.Follow = Views[12];
+                virtualCam.LookAt = lookAt[0];
             }
 
         }

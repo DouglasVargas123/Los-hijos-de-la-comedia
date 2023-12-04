@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DDialogo : MonoBehaviour
 {
-    [SerializeField] private Animator anim, animpredrodevaldivia;
+    [SerializeField] private Animator animPanel, animNPC;
 
     // Este método se llama cuando otro Collider entra en el colisionador de este objeto
     private void OnTriggerEnter(Collider asjdhkalskdja)
@@ -13,8 +13,8 @@ public class DDialogo : MonoBehaviour
         if (asjdhkalskdja.CompareTag("Player"))
         {
             // Hacer algo cuando el jugador entra en el área
-            animpredrodevaldivia.SetBool("Hablar", true);
-            anim.SetTrigger("Aparece");
+            animNPC.SetBool("Hablar", true);
+            animPanel.SetTrigger("Aparece");
         }
     }
 
@@ -24,8 +24,8 @@ public class DDialogo : MonoBehaviour
         if (asdasdasdjahsdlkja.CompareTag("Player"))
         {
             // Hacer algo cuando el jugador entra en el área
-            anim.SetTrigger("Desaparece");
-            animpredrodevaldivia.SetBool("Hablar", false);
+            animPanel.SetTrigger("Desaparece");
+            animNPC.SetBool("Hablar", false);
         }
     }
 }
