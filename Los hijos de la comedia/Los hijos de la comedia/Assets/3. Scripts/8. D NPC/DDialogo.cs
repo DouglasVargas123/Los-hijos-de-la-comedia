@@ -6,7 +6,6 @@ public class DDialogo : MonoBehaviour
 {
     [SerializeField] private Animator animPanel, animNPC;
 
-    [HideInInspector] public bool inBernado, inBlanco, inNegro,inValdivia, InVioleta;
 
     // Este método se llama cuando otro Collider entra en el colisionador de este objeto
     private void OnTriggerEnter(Collider asjdhkalskdja)
@@ -20,27 +19,27 @@ public class DDialogo : MonoBehaviour
             if (this.gameObject.name == "BernadorOhigins")
             {
                 AudioManager.instance.VozBernardo();
-                inBernado = true;
+                ControladorDatos.instance.VerdaderoBernardo();
             }
             else if(this.gameObject.name == "PedroDeValdivia")
             {
                 AudioManager.instance.VozValdivia();
-                inValdivia = true;
+                ControladorDatos.instance.VerdaderoValdivia();
             }
             else if (this.gameObject.name == "PerroNegro")
             {
                 AudioManager.instance.VozPerroNegro();
-                inNegro = true;
+                ControladorDatos.instance.VerdaderoNegro();
             }
             else if (this.gameObject.name == "PerroBlanco")
             {
                 AudioManager.instance.VozPerroBlanco();
-                inBlanco = true;
+                ControladorDatos.instance.VerdaderoBlanco();
             }
             else if (this.gameObject.name == "Violeta_Parra")
             {
                 AudioManager.instance.VozPerroBlanco();
-                InVioleta = true;
+                ControladorDatos.instance.VerdaderoVIoleta();
             }
 
         }
@@ -61,7 +60,6 @@ public class DDialogo : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            InVioleta = true; inBlanco = true; inNegro = true; inValdivia = true; inBernado = true;
         }
     }
 }

@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/1. Scenes/MainMenu.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
@@ -20,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/1. D Scenes/D Nivel2.unity
     guid: 9a83d50d4e0946e49bb56c291ba6034f
+  - enabled: 1
+    path: Assets/1. D Scenes/FinalBueno.unity
+    guid: 5f20af4794b8dec46b897e1b597196e7
+  - enabled: 1
+    path: Assets/1. D Scenes/FinalMalo.unity
+    guid: 12070e8dcf5316f41a158582f29a7497
   m_configObjects: {}
