@@ -32,6 +32,7 @@ public class InteractController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(raycastPoint.position, transform.TransformDirection(rayDirectionFront), out hit, rayDistanceHand, LayerMask.GetMask("Interactable")))
         {
+            Debug.Log("Tocando");
             hit.transform.GetComponent<Interactable>().Interact();
             movementController.playerSpeed -= hit.transform.GetComponent<Pickable>().objectsValue.ObjectWeightSpeed;
             movementController.jumpForce -= hit.transform.GetComponent<Pickable>().objectsValue.ObjectWeightJump;

@@ -138,6 +138,7 @@ MonoBehaviour:
   lookAt:
   - {fileID: 469556622817527024}
   - {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!114 &469556622817527026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469556623877848749}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.75, z: 1.3399963}
+  m_LocalPosition: {x: 0, y: 0, z: 0.87999725}
   m_LocalScale: {x: 0.59341, y: 0.59341, z: 0.59341}
   m_ConstrainProportionsScale: 0
   m_Children: []

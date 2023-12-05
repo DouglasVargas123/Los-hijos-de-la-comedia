@@ -8,12 +8,4 @@ public class EsceneManagerMenu : MonoBehaviour
     {
         SceneManager.LoadScene(nombreDeLaEscena);
     }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene(escena);
-        }
-    }
 }

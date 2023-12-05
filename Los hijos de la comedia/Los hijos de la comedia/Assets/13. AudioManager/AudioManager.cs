@@ -9,8 +9,13 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioMixer mixer;
 
-    [SerializeField] AudioSource saltoSource;
+    [SerializeField] AudioSource saltoSource, vozsourcePPhiggins, vozsourceValdivia;
+    [SerializeField] AudioSource vozPerroBlancoSource, vozPerronegrosource;
+
     [SerializeField] List<AudioClip> saltoClips = new List<AudioClip>();
+    [SerializeField] AudioClip vozBernardo, vozValdivia;
+    [SerializeField] AudioClip vozBlanco, vozNegro;
+
 
 
     public const string MASTER_KEY = "master";
@@ -48,6 +53,26 @@ public class AudioManager : MonoBehaviour
     {
         AudioClip clip = saltoClips[Random.Range(0, saltoClips.Count)];
         saltoSource.PlayOneShot(clip);
+    }
+
+    public void VozBernardo()
+    {
+        vozsourcePPhiggins.PlayOneShot(vozBernardo);
+    }
+
+    public void VozValdivia()
+    {
+        vozsourceValdivia.PlayOneShot(vozValdivia);
+    }
+
+    public void VozPerroBlanco()
+    {
+        vozPerroBlancoSource.PlayOneShot(vozBlanco);
+    }
+
+    public void VozPerroNegro()
+    {
+        vozPerronegrosource.PlayOneShot(vozNegro);
     }
 
     void LoadVolume() //Volume saved in volumeSetting.cs
